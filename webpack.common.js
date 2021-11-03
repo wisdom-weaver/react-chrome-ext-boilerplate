@@ -16,9 +16,9 @@ module.exports = {
         loader: "babel-loader",
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        options:{
-          "presets": ["@babel/preset-react"],
-        }
+        options: {
+          presets: ["@babel/preset-react"],
+        },
       },
       {
         test: /\.css$/i,
@@ -53,7 +53,10 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: "all",
+      // chunks: "all",
+      chunks(chunk) {
+        return chunk.name !== "contentScript";
+      },
     },
   },
 };
